@@ -63,8 +63,11 @@ Description: >
   DIO – AWS Cloud Foundations | Primeira Stack com CloudFormation.
   Provisiona: S3 (logs), CloudTrail (auditoria), IAM Role/InstanceProfile para EC2
   e um Alarme do CloudWatch para CPU.
-[//]: Define a versão do formato CloudFormation e a descrição geral da pilha, explicando o propósito do projeto.
+# Define a versão do formato CloudFormation e a descrição geral da pilha, explicando o propósito do projeto.
+```
+### 🔹 Parâmetros
 
+```yaml
 Parameters:
   ProjectName:
     Type: String
@@ -72,34 +75,43 @@ Parameters:
   InstanceType:
     Type: String
     Default: t3.micro
-[//]: Permitem personalizar a stack no momento da criação, alterando o nome do projeto ou o tipo da instância EC2 sem modificar o código principal.
+# Permitem personalizar a stack ao criar, alterando nome do projeto ou tipo da instância EC2.
 
+```
+### 🔹 Criação do Bucket S3
+
+```yaml
 LogsBucket:
   Type: AWS::S3::Bucket
   Properties:
     BucketName: !Sub '${ProjectName}-logs-${AWS::AccountId}-${AWS::Region}'
-[//]: Cria um bucket S3 para armazenar logs.
-[//]: O nome é gerado automaticamente com o nome do projeto, número da conta e região, garantindo unicidade global.
-[//]: A configuração também inclui:
-[//]: - Criptografia AES256
-[//]: - Bloqueio de acesso público
-[//]: - Controle de versão de objetos
+# Cria um bucket S3 para armazenar logs com nome único, criptografia AES256 e bloqueio público.
 
+```
+### 🔹 Política de Acesso ao Bucket
+
+```yaml
 LogsBucketPolicy:
   Type: AWS::S3::BucketPolicy
   Properties:
     Bucket: !Ref LogsBucket
-[//]: Define as permissões que permitem ao CloudTrail gravar arquivos dentro do bucket.
-[//]: Garante que apenas o serviço autorizado (CloudTrail) possa escrever logs de auditoria.
+# Define permissões para o CloudTrail gravar arquivos no bucket.
+# Garante que apenas o serviço autorizado possa escrever logs de auditoria.
+```
 
+### 🔹 Trilha de Auditoria (CloudTrail)
+
+```yaml
 Trail:
   Type: AWS::CloudTrail::Trail
   Properties:
     S3BucketName: !Ref LogsBucket
     IsLogging: true
-[//]: Cria uma trilha de auditoria que registra eventos como login, criação de recursos e exclusões.
-[//]: Os arquivos gerados são enviados automaticamente para o bucket de logs.
+# Cria uma trilha que registra eventos (login, criação, exclusões) e envia logs ao bucket S3.
+```
+### 🔹 IAM Role e Instance Profile
 
+```yaml
 Ec2Role:
   Type: AWS::IAM::Role
   Properties:
@@ -108,31 +120,40 @@ Ec2Role:
         - Effect: Allow
           Principal:
             Service: ec2.amazonaws.com
-[//]: Cria uma função IAM que permite à instância EC2 enviar métricas e logs para o CloudWatch.
-[//]: O Instance Profile associa essa função à máquina virtual durante sua criação.
+# Cria uma função IAM que permite à EC2 enviar métricas e logs ao CloudWatch.
+```
 
+### 🔹 Instância EC2
+
+```yaml
 DemoInstance:
   Type: AWS::EC2::Instance
   Properties:
     ImageId: !Ref LatestAmiId
     InstanceType: !Ref InstanceType
-[//]: Provisiona uma instância EC2 Amazon Linux 2023, conectada ao perfil IAM definido anteriormente.
-[//]: Essa instância é o “coração” do ambiente, usada para testes e simulações.
+# Cria uma instância EC2 Amazon Linux 2023, principal recurso do ambiente.
+```
 
+### 🔹 Alarme de CPU
+
+```yaml
 CpuAlarm:
   Type: AWS::CloudWatch::Alarm
   Properties:
     MetricName: CPUUtilization
     Threshold: 70
-[//]: Cria um alarme de monitoramento que dispara caso a CPU da instância ultrapasse 70% em dois períodos consecutivos.
-[//]: Demonstra a capacidade do CloudFormation de gerenciar observabilidade e alertas.
+# Cria um alarme que dispara se a CPU ultrapassar 70% em dois períodos consecutivos.
+```
 
+### 🔹 Saídas (Outputs)
+
+```yaml
 Outputs:
   oInstanceId:
     Description: ID da instância EC2 provisionada.
     Value: !Ref DemoInstance
-[//]: Define as informações finais exibidas após a criação da stack, como o ID da instância, nome do bucket e região.
-[//]: Essas saídas facilitam a integração com outras stacks e automações.
+# Exibe informações finais como ID da instância, nome do bucket e região.
+# Úteis para automações e integrações entre stacks.
 
 ```
 
