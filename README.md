@@ -1,11 +1,25 @@
 # ☁️ Desafio AWS CloudFormation Foundations – DIO
 
+> 📘 **Atualização:**  
+> Este repositório também atende ao desafio **“Infraestrutura Automatizada com AWS CloudFormation”** da formação *AWS Cloud Foundations – DIO & Santander Code Girls*.  
+> O projeto demonstra a aplicação prática de **Infraestrutura como Código (IaC)**, utilizando **templates YAML** para criação automatizada e segura de recursos AWS, como S3, CloudTrail, IAM, EC2 e CloudWatch.  
+> Além de cumprir os requisitos de automação, padronização e segurança, este projeto reforça as boas práticas de documentação técnica e versionamento com GitHub.
+
+
 ## 📘 Visão Geral
 
 Este projeto foi desenvolvido como parte da formação **AWS Cloud Foundations – Santander Code Girls (DIO)**.  
 O objetivo é demonstrar a criação e automação de uma infraestrutura em nuvem utilizando o serviço **AWS CloudFormation**, aplicando o conceito de **Infraestrutura como Código (IaC)**.
 
 O desafio consistiu em criar um **template YAML** capaz de provisionar automaticamente múltiplos serviços AWS integrados, sem a necessidade de configuração manual pelo console.
+
+## 🎯 Objetivos de Aprendizagem
+
+- Aplicar os conceitos aprendidos em um ambiente prático de nuvem.  
+- Documentar processos técnicos de forma clara e estruturada.  
+- Utilizar o GitHub como ferramenta de versionamento e compartilhamento técnico.  
+- Consolidar boas práticas de automação, segurança e padronização de infraestrutura.
+
 
 ---
 
@@ -24,6 +38,7 @@ Essa abordagem é parte fundamental do modelo **DevOps** e do princípio de **au
 📁 desafio-aws-cloudformation-foundations/
 │
 ├── 📄 README.md → Documentação técnica e detalhada
+├── anotacoes.md → Anotações e insights sobre os desafios
 ├── 📁 templates/
 │ └── primeira-stack.yaml → Template principal em YAML
 └── 📁 images/ → Evidências do processo de execução
@@ -157,6 +172,15 @@ Outputs:
 
 ```
 
+## 🧰 Como Reproduzir o Projeto
+
+1. Faça login na AWS e acesse o serviço **CloudFormation**.  
+2. Clique em **Create Stack → Upload a template file**.  
+3. Selecione o arquivo `primeira-stack.yaml`.  
+4. Clique em **Next → Next → Create stack**.  
+5. Aguarde o status **CREATE_COMPLETE** e visualize os recursos provisionados.
+
+
 ## 🚀 Passos Executados
 
 1. **Criação do arquivo `primeira-stack.yaml`**  
@@ -207,6 +231,9 @@ Durante o desenvolvimento deste desafio, foi possível compreender na prática:
 - O valor da **automação e reprodutibilidade** em ambientes profissionais de nuvem.  
 
 O projeto demonstrou que, com **um único arquivo YAML**, é possível criar uma infraestrutura completa, segura e documentada, aplicando boas práticas de **Infraestrutura como Código (IaC)**.
+
+Este repositório consolida os aprendizados da formação **AWS Cloud Foundations**, sendo também a entrega oficial do desafio **“Infraestrutura Automatizada com AWS CloudFormation”**, que reforça a aplicação prática de automação, segurança e documentação profissional em ambiente AWS.
+
 
 ---
 
