@@ -45,7 +45,9 @@ Essa abordagem é parte fundamental do modelo **DevOps** e do princípio de **au
 ├── template-upload.png
 ├── stack-create-complete.png
 ├── resources-list.png
-└── ec2-running.png
+├── ec2-running.png
+├── cloudwatch-alarm.png
+└── cloudtrail-logs.png
 ```
 
 
@@ -208,6 +210,9 @@ Outputs:
 | 2️⃣ | Stack criada com sucesso (CREATE_COMPLETE) | ![Stack criada](images/stack-create-complete.png) |
 | 3️⃣ | Recursos provisionados automaticamente | ![Recursos criados](images/resources-list.png) |
 | 4️⃣ | Instância EC2 em execução | ![EC2 Running](images/ec2-running.png) |
+| 5️⃣ | Alarme CloudWatch criado automaticamente | ![CloudWatch Alarm](images/cloudwatch-alarm.png) |
+| 6️⃣ | Logs do CloudTrail armazenados no bucket S3 | ![CloudTrail Logs](images/cloudtrail-logs.png) |
+
 
 ---
 
